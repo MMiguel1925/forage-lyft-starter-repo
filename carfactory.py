@@ -1,6 +1,7 @@
 from datetime import date
 from components.battery import SpindlerBattery, NubbinBattery
 from components.engine import WilloughbyEngine, CapuletEngine, SternmanEngine
+from components.tires import CarriganTires, OctoprimeTires
 from car import Car
 
 
@@ -16,61 +17,53 @@ class CarFactory:
                         current_date: date,
                         last_service_date: date,
                         current_mileage: int,
-                        last_service_mileage: int) -> Car:
-        self.current_date = current_date
-        self.last_service_date = last_service_date
-        self.current_mileage = current_mileage
-        self.last_service_mileage = last_service_mileage
-        self.engine = CapuletEngine(self.last_service_mileage, self.current_mileage)
-        self.battery = SpindlerBattery(self.last_service_date, self.current_date)
-        return Car(self.engine, self.battery)
+                        last_service_mileage: int,
+                        tire_wear_status) -> Car:
+
+        self.engine = CapuletEngine(last_service_mileage, current_mileage)
+        self.battery = SpindlerBattery(last_service_date, current_date)
+        self.tires = CarriganTires(tire_wear_status)
+        return Car(self.engine, self.battery, self.tires)
 
     def create_glissade(self,
                             current_date: date,
                             last_service_date: date,
                             current_mileage: int,
-                            last_service_mileage: int) -> Car:
-        self.current_date = current_date
-        self.last_service_date = last_service_date
-        self.current_mileage = current_mileage
-        self.last_service_mileage = last_service_mileage
-        self.engine = WilloughbyEngine(self.last_service_mileage, self.current_mileage)
-        self.battery = SpindlerBattery(self.last_service_date, self.current_date)
-        return Car(self.engine, self.battery)
+                            last_service_mileage: int,
+                            tire_wear_status) -> Car:
+        self.engine = WilloughbyEngine(last_service_mileage, current_mileage)
+        self.battery = SpindlerBattery(last_service_date, current_date)
+        self.tires = OctoprimeTires(tire_wear_status)
+        return Car(self.engine, self.battery, self.tires)
 
     def create_palindrome(self,
                             current_date: date,
                             last_service_date: date,
-                            warning_light_on: bool):
-        self.current_date = current_date
-        self.last_service_date = last_service_date
-        self.warning_light_on = warning_light_on
-        self.engine = SternmanEngine(self.warning_light_on)
-        self.battery = NubbinBattery(self.last_service_date, self.current_date)
-        return Car(self.engine, self.battery)
+                            warning_light_on: bool,
+                            tire_wear_status) -> Car:
+        self.engine = SternmanEngine(warning_light_on)
+        self.battery = NubbinBattery(last_service_date, current_date)
+        self.tires = CarriganTires(tire_wear_status)
+        return Car(self.engine, self.battery, self.tires)
 
     def create_rorschach(self,
                             current_date: date,
                             last_service_date: date,
                             current_mileage: int,
-                            last_service_mileage: int):
-        self.current_date = current_date
-        self.last_service_date = last_service_date
-        self.current_mileage = current_mileage
-        self.last_service_mileage = last_service_mileage
-        self.engine = WilloughbyEngine(self.last_service_mileage, self.current_mileage)
-        self.battery = NubbinBattery(self.last_service_date, self.current_date)
-        return Car(self.engine, self.battery)
+                            last_service_mileage: int,
+                            tire_wear_status) -> Car:
+        self.engine = WilloughbyEngine(last_service_mileage, current_mileage)
+        self.battery = NubbinBattery(last_service_date, current_date)
+        self.tires = OctoprimeTires(tire_wear_status)
+        return Car(self.engine, self.battery, self.tires)
 
     def create_thovex(self,
                             current_date: date,
                             last_service_date: date,
                             current_mileage: int,
-                            last_service_mileage: int):
-        self.current_date = current_date
-        self.last_service_date = last_service_date
-        self.current_mileage = current_mileage
-        self.last_service_mileage = last_service_mileage
-        self.engine = CapuletEngine(self.last_service_mileage, self.current_mileage)
-        self.battery = NubbinBattery(self.last_service_date, self.current_date)
-        return Car(self.engine, self.battery)
+                            last_service_mileage: int,
+                            tire_wear_status) -> Car:
+        self.engine = CapuletEngine(last_service_mileage, current_mileage)
+        self.battery = NubbinBattery(last_service_date, current_date)
+        self.tires = CarriganTires(tire_wear_status)
+        return Car(self.engine, self.battery, self.tires)
