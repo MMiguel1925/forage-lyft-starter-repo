@@ -27,9 +27,17 @@ class CarriganTires(Tires):
 class OctoprimeTires(Tires):
     # Octoprime tires should be serviced only
     # when the sum of all values in the tire wear array is greater than or equal to 3
-    def __init__(self):
+    def __init__(self,  tire_wire):
         super().__init__()
+        self.tire_wire = tire_wire
 
     def needs_service(self):
-        return True
+        result = 0.0
+        for tire in self.tire_wire:
+            result += tire
+
+        if result >= 3:
+            return True
+        else:
+            return False
 

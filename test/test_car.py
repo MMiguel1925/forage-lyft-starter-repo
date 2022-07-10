@@ -75,6 +75,14 @@ class TestTires(unittest.TestCase):
         tire_wear = [0.0, 0.8, 0.3, 0.2]
         self.assertFalse(CarriganTires(tire_wear).needs_service(), 'Expected result = False')
 
+    def test_octoprime_tires_should_be_serviced(self):
+        tire_wear = [0.0, 0.8, 1.2, 2.2]
+        self.assertTrue(OctoprimeTires(tire_wear).needs_service, 'Expected result = True')
+
+    def test_octoprime_tires_should_not_be_serviced(self):
+        tire_wear = [0.0, 0.8, 1.2, 2.2]
+        self.assertTrue(OctoprimeTires(tire_wear).needs_service, 'Expected result = False')
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
