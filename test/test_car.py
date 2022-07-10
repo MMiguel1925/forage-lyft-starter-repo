@@ -45,23 +45,23 @@ class TestBattery(unittest.TestCase):
 
     def test_spindler_battery_should_be_serviced(self):
         current_date = datetime.today().date()
-        last_service_date = current_date.replace(year=current_date.year - 3)
-        self.assertTrue(SpindlerBattery(last_service_date, current_date).needs_service(),'Expected result = True')
+        last_service_date = current_date.replace(year=current_date.year - 4)
+        self.assertTrue(SpindlerBattery(last_service_date, current_date).needs_service(), 'Expected result = True')
 
     def test_spindler_battery_should_not_be_serviced(self):
         current_date = datetime.today().date()
-        last_service_date = current_date.replace(year=current_date.year - 1)
-        self.assertFalse(SpindlerBattery(last_service_date, current_date).needs_service(),'Expected result = False')
+        last_service_date = current_date.replace(year=current_date.year - 3)
+        self.assertFalse(SpindlerBattery(last_service_date, current_date).needs_service(), 'Expected result = False')
 
     def test_nubbin_battery_should_be_serviced(self):
         current_date = datetime.today().date()
         last_service_date = current_date.replace(year=current_date.year - 5)
-        self.assertTrue(NubbinBattery(last_service_date, current_date).needs_service(),'Expected result = True')
+        self.assertTrue(NubbinBattery(last_service_date, current_date).needs_service(), 'Expected result = True')
 
     def test_nubbin_battery_should_not_be_serviced(self):
         current_date = datetime.today().date()
         last_service_date = current_date.replace(year=current_date.year - 3)
-        self.assertFalse(NubbinBattery(last_service_date, current_date).needs_service(),'Expected result = False')
+        self.assertFalse(NubbinBattery(last_service_date, current_date).needs_service(), 'Expected result = False')
 
 
 if __name__ == '__main__':
